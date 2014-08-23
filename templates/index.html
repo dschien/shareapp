@@ -13,28 +13,89 @@
 </head>
 <body>
 	<div data-role="page" data-theme="a">
-		<div data-role="header" data-position="inline">
+		<div data-role="header" class="ui-bar" data-position="inline">
 			<h1>Here is food in your hood</h1>
-			<a href="index.html" data-rel="back">Home</a>
+			<a href="index.html" id="overview_button" data-icon="alert" data-rel="back">My Food</a>
 			<a href="#" id="add_button" data-icon="plus" data-theme="b">Add</a>
+			Welcome: <b>Friedrich Chasin</b>
 		</div>
-		<div data-role="content" data-theme="a">
+		
+		<div data-role="content" data-theme="a" id='content'>
 			
 			<div id='add_form'>
-			
+				
 			</div>
 			
-			
-			<p>List of the food you requested</p>
-			
-			<ul data-role="listview" id = 'second_list'>
-
-			</ul>
+			<div id='main_form'>
+				
+			</div>
 			
 			<p><br></p>
-			<p>Select a leftover you would like to pick up!</p>
+			
+		</div>
+	</div>
+</body>
 
-			<!--p>This is content color swatch "A" and a preview of a <a href="#" class="ui-link">link</a>.</p>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$( "#your_list" ).hide(); 
+			$('#main_form').load("html/hoodslist.html", function() { 
+					$(this).trigger('create');
+				});
+			//alert('test');
+			// Check for first application start
+		});
+		
+		$("#test_list").bind('tap', function(event) {
+			//goToPage('mainpage');
+			$( "#your_list" ).show();
+			$( "#test_list" ).hide();
+			//$("#test_list").append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
+			$('#second_list').append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
+			//$( "#test_list" ).hide();
+			$('#second_list').listview('refresh');
+			//$("#test_list2").trigger('create');
+			//$("#test_list2").listview("refresh");
+			//alert("You clicked");
+			event.preventDefault();
+		});
+		
+		
+		
+		$("#overview_button").bind('tap', function(event) {
+			//alert($(this).text());
+			if($(this).text() == 'My Food') {
+				//alert('my text');
+				$('#main_form').load("html/mylist.html", function() { 
+					$(this).trigger('create');
+				});
+				$("#overview_button").html('Food in the Hood');	
+			} else {
+				$('#main_form').load("html/hoodslist.html", function() { 
+					$(this).trigger('create');
+				});
+				$("#overview_button").html('My Food');	
+			}
+			event.preventDefault();
+			
+		});
+		
+		$("#add_button").bind('tap', function(event) {
+			//goToPage('mainpage');
+			//alert('jap');
+			//$('#registration').append('GO');
+			$('#add_form').load("html/add.html", function() { 
+				$(this).trigger('create');
+			});
+			event.preventDefault();
+		});
+		
+	</script>
+	
+</html>
+
+
+<!--p>This is content color swatch "A" and a preview of a <a href="#" class="ui-link">link</a>.</p>
 			<label for="slider1">Input slider:</label>
 			<input type="range" name="slider1" id="slider1" value="50" min="0" max="100" data-theme="a" />
 			<fieldset data-role="controlgroup"  data-type="horizontal" data-role="fieldcontain">
@@ -86,84 +147,3 @@
 				<input type="submit" value="Register">
 	 
 			</form-->
-			
-			
-			Test	
-			
-			<ul data-role="listview" id="first_list">
-			<li id="test_list"><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Milk</h3>
-				<p>Nice Milk</p>
-			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Bred</h3>
-				<p>The fresh and best one you can get</p>
-			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Wolfgang Amadeus Phoenix</h3>
-				<p>Phoenix</p>
-			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Of The Blue Colour Of The Sky</h3>
-				<p>Ok Go</p>
-			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Elephant</h3>
-				<p>The White Stripes</p>
-			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Kid A</h3>
-				<p>Radiohead</p>
-			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>XX</h3>
-				<p>XX</p>
-			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Congratulations</h3>
-				<p>MGMT</p>
-			</a></li>
-		</ul>
-		</div>
-	</div>
-</body>
-
-	<script type="text/javascript">
-		$(document).ready(function() {
-			//alert('test');
-			// Check for first application start
-		});
-		
-		$("#test_list").bind('tap', function(event) {
-			//goToPage('mainpage');
-			$( "#test_list" ).hide();
-			//$("#test_list").append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
-			$('#second_list').append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
-			//$( "#test_list" ).hide();
-			$('#second_list').listview('refresh');
-			//$("#test_list2").trigger('create');
-			//$("#test_list2").listview("refresh");
-			//alert("You clicked");
-			event.preventDefault();
-		});
-		
-		$("#add_button").bind('tap', function(event) {
-			//goToPage('mainpage');
-			//alert('jap');
-			//$('#registration').append('GO');
-			$('#add_form').load("html/add.html", function() { 
-				$(this).trigger('create');
-			});
-			event.preventDefault();
-		});
-	</script>
-	
-</html>

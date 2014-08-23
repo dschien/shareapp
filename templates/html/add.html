@@ -9,7 +9,7 @@
 	 
 				<fieldset data-role="fieldcontain"> 
 					<label for="password">Description:</label>
-					<input type="password" name="password" id="password">
+					<input type="text" name="password" id="password">
 				</fieldset>
 	 
 				<fieldset data-role="fieldcontain"> 
@@ -36,13 +36,17 @@
 			t = setTimeout("removeDisplayMessage()",2000);
 		});
 		$("#submit_item").bind('tap', function(event) {		
+			
 			event.preventDefault();
 			//showNotification({
 			//	message: "This is a sample Success notification",
 			//	type: "success"
 			//});
-			
-
+			var name = $('#username').val();
+			var description = $('#password').val();
+			$("#my_list").append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>' + name + '</h3><p>' + description + '</p></a></li>');
+			//$("#my_list").
+			$('#my_list').listview('refresh');
 			$("#add_form").empty();
 			$('#add_form').append('<p><b>Item added!</b> <img src="../static/res/icons/agt_action_success.png" alt="Smiley face" height="42" width="42"></p>  ');
 			t = setTimeout("removeDisplayMessage()",1000);
@@ -51,4 +55,3 @@
 		
 	});
 </script>
-

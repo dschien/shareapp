@@ -1,31 +1,40 @@
-<div id='hoods_list'>
-	<h1>Hood requested your food</h1>
-	<ul data-role="listview" id = 'second_list2'>
-				<li id="test_list2"><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Bread</h3>
-				<p>Nice Milk</p>
+<br>
+<div id='your_list'>
+	<ul data-role="listview" id = 'list_pickup'>
+			<li><a href="index.html">
+				<h3>Prepare for pick up</h3>
 			</a></li>
 	</ul>
+	<br>
+	<br>
+	<br>
 </div>
 
-<h1>Here is your food for your hood:</h1>  
+<div id='your_list'>
+	<ul data-role="listview" id = 'list_interested'>
+			<li><a href="index.html">
+				<h3>Pending food requests</h3>
+			</a></li>
+	</ul>
+	<br>
+	<br>
+	<br>
+</div>
 
 <ul data-role="listview" id="my_list">
+			
+			<li><a href="index.html">
+				<h3>My food for the hood</h3>
+			</a></li>
 			<li id="test_list2"><a href="index.html">
 				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Milk</h3>
-				<p>Nice Milk</p>
+				<h3>My milk</h3>
+				<p>nice milk</p>
 			</a></li>
 			<li><a href="index.html">
 				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Bred</h3>
+				<h3>My bread</h3>
 				<p>The fresh and best one you can get</p>
-			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Wolfgang Amadeus Phoenix</h3>
-				<p>Phoenix</p>
 			</a></li>
 		</ul>
 </form>  
@@ -42,9 +51,9 @@
 		//$( "#hoods_list" ).show();
 		$( "#test_list2" ).hide();
 		//$("#test_list").append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
-		$('#second_list').append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
+		$('#list_interested').append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>My milk</h3><p>nice milk</p></a></li>');
 		//$( "#test_list" ).hide();
-		$('#second_list').listview('refresh');
+		$('#list_interested').listview('refresh');
 		//$("#test_list2").trigger('create');
 		//$("#test_list2").listview("refresh");
 		//alert("You clicked");
@@ -53,4 +62,3 @@
 	});
 	
 </script>
-

@@ -1,28 +1,49 @@
+<br>
 <div id='your_list'>
-	<h1>List of the food you requested</h1>
-	<ul data-role="listview" id = 'second_list'>
+	<ul data-role="listview" id = 'list_pickup'>
+			<li><a href="index.html">
+				<h3>To pick up</h3>
+			</a></li>
 	</ul>
+	<br>
+	<br>
+	<br>
 </div>
 
-<h1>Pick the food from your hood!</h1>  
+<div id='your_list'>
+	<ul data-role="listview" id = 'second_list'>
+			<li><a href="index.html">
+				<h3>Food you requested</h3>
+			</a></li>
+	</ul>
+	<br>
+	<br>
+	<br>
+</div>
+
 
 <ul data-role="listview" id="first_list">
+	
+	<li><a href="index.html">
+		<h3>Pick the food from your hood</h3>
+	</a></li>
+	
 	<li id="test_list"><a href="index.html">
 		<img src="../static/res/icons/food-icon1.png" />
+		<h3>Creme Fraiche</h3>
+		<p>from Sara</p>
+	</a></li>
+	<li><a href="index.html">
+		<img src="../static/res/icons/food-icon1.png" />
 		<h3>Milk</h3>
-		<p>Nice Milk</p>
+		<p>from Chris</p>
 	</a></li>
 	<li><a href="index.html">
 		<img src="../static/res/icons/food-icon1.png" />
-		<h3>Bred</h3>
-		<p>The fresh and best one you can get</p>
+		<h3>Bread</h3>
+		<p>from Pernilla</p>
 	</a></li>
-	<li><a href="index.html">
-		<img src="../static/res/icons/food-icon1.png" />
-		<h3>Wolfgang Amadeus Phoenix</h3>
-		<p>Phoenix</p>
-	</a></li>
-	<li><a href="index.html">
+	<!--li><a href="index.html">
 		<img src="../static/res/icons/food-icon1.png" />
 		<h3>Of The Blue Colour Of The Sky</h3>
 		<p>Ok Go</p>
@@ -46,12 +67,12 @@
 		<img src="../static/res/icons/food-icon1.png" />
 		<h3>Congratulations</h3>
 		<p>MGMT</p>
-	</a></li>
+	</a></li-->
 </ul>
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$( "#your_list" ).hide(); 
+		//$( "#your_list" ).hide(); 
 		//alert('test');
 	});
 	
@@ -59,8 +80,8 @@
 		//goToPage('mainpage');
 		$( "#your_list" ).show();
 		$( "#test_list" ).hide();
-		//$("#test_list").append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
-		$('#second_list').append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
+		//$("#test_list").append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Creme Fraiche</h3><p>from Sara</p></a></li>');
+		$('#second_list').append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Creme Fraiche</h3><p>from Sara</p></a></li>');
 		//$( "#test_list" ).hide();
 		$('#second_list').listview('refresh');
 		//$("#test_list2").trigger('create');
@@ -69,4 +90,3 @@
 		event.preventDefault();
 	});
 </script>
-

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+{% comment %}
+{% if account %}
+{% endcomment %}
+
+
+<p>{% trans "Account successfully activated" %}</p>
+
+<p><a href="{% url 'auth_login' %}?next={% firstof request.path '/' %}">{% trans "Log in" %}</a></p>
+
+{% comment %}
+<!-- {% else %} -->
+
+<p>{% trans "Account activation failed" %}</p>
+
+{% endif %}
+{% endcomment %}
+
+{% endblock %}

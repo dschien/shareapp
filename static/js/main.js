@@ -2,13 +2,19 @@
  * Created by schien on 23/08/2014.
  */
 
+
+
 function init() {
-    $.ajax({url: "/api/items" }).done(function (data) {
+    var template = _.template(
+        $("script.listitem_template").html()
+    );
+
+    $.ajax({url: "/apibrowse/items" }).done(function (data) {
         console.log(data)
         var div = $('<div></div>');
 
         _.each(data, function (it) {
-            div.append(it)
+            div.append(template(it))
         });
 
         $("#first_list").append(div)

@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile.structure-1.4.3.min.css" />
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+	<link rel="stylesheet" href="../static/css/FoodWaste.css" /> 
+	<script src="../static/js/jquery_notification_v.1.js"></script> 
 </head>
 <body>
 	<div data-role="page" data-theme="a">
@@ -18,7 +20,7 @@
 		</div>
 		<div data-role="content" data-theme="a">
 			
-			<div id='registration'>
+			<div id='add_form'>
 			
 			</div>
 			
@@ -157,7 +159,7 @@
 			//goToPage('mainpage');
 			//alert('jap');
 			//$('#registration').append('GO');
-			$('#registration').load("html/add.html", function() { 
+			$('#add_form').load("html/add.html", function() { 
 				$(this).trigger('create');
 			});
 			event.preventDefault();

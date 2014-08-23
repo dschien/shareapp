@@ -1,4 +1,4 @@
-Enter your article
+<h1>Add your food for the hood:</h1>  
 
 <form action="process.cfm" method="post">
  
@@ -17,13 +17,23 @@ Enter your article
 					<input type="password" name="password2" id="password2">
 				</fieldset>
 
-				<input type="submit" value="Submit">
+				<input type="submit" value="Submit" id="submit_item">
 	 
 </form>  
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		//alert('test');
+	});
+	
+	$("#submit_item").bind('tap', function(event) {		
+		event.preventDefault();
+		showNotification({
+			message: "This is a sample Success notification",
+			type: "success"
+		});
+
+		$("#add_form").hide();
 	});
 </script>
 

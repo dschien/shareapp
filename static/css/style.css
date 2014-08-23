@@ -1,0 +1,70 @@
+
+/* Buttons on submission.html page */
+.ui-bar-e2 {
+    border: 1px solid #A4A4A4;
+    color: #333333;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.ui-bar-e3 {
+	color: #333333;
+    text-shadow: 0 1px 0 #FFFFFF;
+	height: 140px;
+}
+
+.ui-btn-icon-top .ui-btn-inner {
+    padding-top: 30px;
+}
+
+.mainpadding {
+	padding: 15px;
+}
+
+.nav-gdacsmobile .ui-btn .ui-btn-inner { padding-top: 40px !important; }
+.nav-gdacsmobile .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
+#map .ui-icon { background:  url(../res/icons/map_small_t.png) 50% 50% no-repeat; background-size: 30px 22px; }
+#na .ui-icon { background:  url(../res/icons/na_small2_t.png) 50% 50% no-repeat; background-size: 30px 22px;  }
+#overview .ui-icon { background:  url(../res/icons/overview_small_t.png) 50% 50% no-repeat;  background-size: 30px 22px; }
+#myreport .ui-icon { background:  url(../res/icons/my_small_t.png) 50% 50% no-repeat;  background-size: 30px 22px; }
+#gear .ui-icon { background:  url(../res/icons/19-gear.png) 50% 50% no-repeat;  background-size: 20px 20px; }
+#alertMap .ui-icon { background:  url(../res/icons/map_small_t.png) 50% 50% no-repeat; background-size: 30px 22px; }
+#alertList .ui-icon { background:  url(../res/gdacs_alerts/alert_list_t.png) 50% 50% no-repeat; background-size: 24px 24px; }
+		
+/* #block-ui { */
+/*     display: none; */
+/*     cursor: wait; */
+/*     position: absolute; */
+/*     top: 0px; */
+/*     left: 0px;   */
+/*     width: 100%; */
+/*     height: 100%; */
+/*     z-index: 9;  */
+/*     background-color: #CCCCCC; */
+/*     opacity: 0.5; */
+/* } */
+
+/* Image element on submission.html page */
+#reportImage {
+    background: #ccf;
+    border: 1px solid black;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+/* Images for buttons */
+#camera_icon .ui-icon { background:  url(../res/icons/86-camera.png) 50% 50% no-repeat; background-size: 16px 14px; }
+/* ATTENTION Remove the picture #folder_icon .ui-icon { background:  url(../res/icons/40-inbox.png) 50% 50% no-repeat; background-size: 16px 14px; }*/
+
+/* END Buttons on submission.html page */
+
+/* For icon category navigation purposes */
+/* TODO rename lyphish-example */
+.nav-glyphish-example .ui-btn .ui-btn-inner { padding-top: 40px !important; }
+.nav-glyphish-example .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: none !important; border-radius: none !important; }
+
+.reportTemplateMessage{
+	min-height:50px;font-weight:bold;font-size:12pt;
+}
+
+

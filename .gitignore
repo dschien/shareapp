@@ -1,0 +1,10 @@
+shareapp/local_settings.py
+shareapp/development_settings.py
+ipython.requirements.osx.txt
+*.pyc
+var
+mailconf
+.idea/
+static/debug/
+.DS_Store
+logs/*

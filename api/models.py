@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_extensions.db.models import TimeStampedModel
 
 
 class UserProfile(models.Model):
@@ -14,18 +15,18 @@ class UserProfile(models.Model):
 
 
 # Create your models here.
-class Item(models.Model):
+class Item(TimeStampedModel):
     """
     An Item
     """
     name = models.CharField(max_length=200)
     description = models.TextField(null=True)
-    provider = models.ForeignKey(User, related_name='items')
-    consumer = models.ForeignKey(User, null=True, blank=True, related_name='items')
+    provider = models.ForeignKey(User, related_name='offered_items')
 
 
-class Transaction(models.Model):
+class Transaction(TimeStampedModel):
     item = models.ForeignKey(Item, related_name='items')
+    consumer = models.ForeignKey(User, null=True, blank=True)
 
 
 

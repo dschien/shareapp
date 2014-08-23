@@ -1,0 +1,59 @@
+<div data-role="content" class="border mainpadding" id="login">  
+   <p><span style="color:#FFFFFF">Username:</span>  
+    <input type="text" size="15" name="username" id="username" />  
+  	<br />  
+    <span style="color:#FFFFFF">Password: </span> 
+    <input type="password" size="15" name="password" id="password" />  
+	<div data-role="fieldcontain">
+		<fieldset data-role="controlgroup">
+			<input type="checkbox" name="savepassword" id="savepasswordId" class="custom" />
+			<label for="savepasswordId">Save password</label>
+		</fieldset>
+	</div>
+    <br />  
+    <input type="button" id="login_btn" name="login" value="Login" data-theme = "b"/>
+    <input type="button" id="skip" name="skip" value="Public Access" data-theme = "b"/>
+    <!--  <input type="button" accesskey="l" id="register" name="register" value="Register" />  --> 
+</div>  
+<center><img src="res/icons/gdacsmobile_logo.png"  width="120px" height="70px"/></center>
+
+<!-- Page specific js -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		// Adding tap animations 
+		document.getElementById("skip").addEventListener("touchstart", onTouchStart); //Listen for the user to start touching
+		document.getElementById("skip").addEventListener("touchend", onTouchEnd); //Listen for the user to end touching
+		document.getElementById("skip").addEventListener("touchmove", onTouchMove); //Listen for the user to end touching
+		document.getElementById("login_btn").addEventListener("touchstart", onTouchStart); //Listen for the user to start touching
+		document.getElementById("login_btn").addEventListener("touchend", onTouchEnd); //Listen for the user to end touching
+		document.getElementById("login_btn").addEventListener("touchmove", onTouchMove); //Listen for the user to end touching
+		
+		// Start the application as a public user
+		$("#skip").bind('tap', function(event) {
+			openAllLawnchairs(function() {
+				if (window.device) {
+					login(device.uuid,"1234",true);
+				} else {
+					login("BrowserUser","1234",true);
+				}
+			});
+			event.preventDefault();
+		});	
+
+		// Start the application as a registered user
+		$("#login_btn").bind('tap', function(event) {
+			//Start the application
+			openAllLawnchairs(function() {  
+				login(document.getElementById("username").value, document.getElementById("password").value,false);
+			});
+			event.preventDefault();
+		});
+		
+		//Safe unblock
+		$.unblockUI();
+		// Do not display footer at the login page
+		$("#GDACSmobile_footer").hide();
+		$("#GDACSmobile_content").fadeIn(100); // displaying the page
+	}); 		
+</script>
+

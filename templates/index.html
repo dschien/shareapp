@@ -12,118 +12,158 @@
     <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
 </head>
 <body>
-<div data-role="page" data-theme="a">
-    <div data-role="header" data-position="inline">
-        <h1>Here is food in your hood</h1>
-        <a href="index.html" data-rel="back">Home</a>
-        <a href="#" data-icon="plus" data-theme="b">Add</a>
-    </div>
-    <div data-role="content" data-theme="a">
+	<div data-role="page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<h1>Here is food in your hood</h1>
+			<a href="index.html" data-rel="back">Home</a>
+			<a href="#" data-icon="plus" data-theme="b">Add</a>
+		</div>
+		<div data-role="content" data-theme="a">
+			
+			<div id='registration'>
+			
+			</div>
+			
+			
+			<p>List of the food you requested</p>
+			
+			<ul data-role="listview" id = 'second_list'>
 
-        <div id='registration'>
+			</ul>
+			
+			<p><br></p>
+			<p>Select a leftover you would like to pick up!</p>
 
-        </div>
-
-
-        <p>List of the food you requested</p>
-
-        <ul data-role="listview" id='second_list'>
-
-        </ul>
-
-        <p><br></p>
-
-        <p>Select a leftover you would like to pick up!</p>
-
-        <!--p>This is content color swatch "A" and a preview of a <a href="#" class="ui-link">link</a>.</p>
-        <label for="slider1">Input slider:</label>
-        <input type="range" name="slider1" id="slider1" value="50" min="0" max="100" data-theme="a" />
-        <fieldset data-role="controlgroup"  data-type="horizontal" data-role="fieldcontain">
-        <legend>Cache settings:</legend>
-        <input type="radio" name="radio-choice-a1" id="radio-choice-a1" value="on" checked="checked" />
-        <label for="radio-choice-a1">On</label>
-        <input type="radio" name="radio-choice-a1" id="radio-choice-b1" value="off"  />
-        <label for="radio-choice-b1">Off</label>
-        </fieldset>
-
-        <form action="process.cfm" method="post">
-
-            <fieldset data-role="fieldcontain">
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username">
-            </fieldset>
-
-            <fieldset data-role="fieldcontain">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password">
-            </fieldset>
-
-            <fieldset data-role="fieldcontain">
-                <label for="password2">Confirm Password:</label>
-                <input type="password" name="password2" id="password2">
-            </fieldset>
-
-            <fieldset data-role="fieldcontain">
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email">
-            </fieldset>
-
-            <fieldset data-role="fieldcontain">
-                <label for="favcolor">Favorite Color:</label>
-                <select id="favcolor" name="favcolor">
-                    <option>Select One</option>
-                    <option>Green</option>
-                    <option>Red</option>
-                    <option>Blue</option>
-                    <option>Yellow</option>
-                </select>
-            </fieldset>
-
-            <fieldset data-role="fieldcontain">
-                <label for="hometown">Home Town:</label>
-                <input type="text" name="hometown" id="hometown">
-            </fieldset>
-
-            <input type="submit" value="Register">
-
-        </form-->
-
-
-        <ul data-role="listview" id="first_list">
-            <li id="test_list">
-                <a href="index.html">
-                    <img src="{{ STATIC_URL }}res/icons/food-icon1.png"/>
-
-                    <h3>Milk</h3>
-
-                    <p>Nice Milk</p>
-                </a>
-            </li>
-
-
-        </ul>
-    </div>
-</div>
+			<!--p>This is content color swatch "A" and a preview of a <a href="#" class="ui-link">link</a>.</p>
+			<label for="slider1">Input slider:</label>
+			<input type="range" name="slider1" id="slider1" value="50" min="0" max="100" data-theme="a" />
+			<fieldset data-role="controlgroup"  data-type="horizontal" data-role="fieldcontain">
+			<legend>Cache settings:</legend>
+			<input type="radio" name="radio-choice-a1" id="radio-choice-a1" value="on" checked="checked" />
+			<label for="radio-choice-a1">On</label>
+			<input type="radio" name="radio-choice-a1" id="radio-choice-b1" value="off"  />
+			<label for="radio-choice-b1">Off</label>
+			</fieldset>
+			
+			<form action="process.cfm" method="post">
+ 
+				<fieldset data-role="fieldcontain"> 
+					<label for="username">Username:</label>
+					<input type="text" name="username" id="username">
+				</fieldset>
+	 
+				<fieldset data-role="fieldcontain"> 
+					<label for="password">Password:</label>
+					<input type="password" name="password" id="password">
+				</fieldset>
+	 
+				<fieldset data-role="fieldcontain"> 
+					<label for="password2">Confirm Password:</label>
+					<input type="password" name="password2" id="password2">
+				</fieldset>
+	 
+				<fieldset data-role="fieldcontain"> 
+					<label for="email">Email:</label>
+					<input type="email" name="email" id="email">
+				</fieldset>
+	 
+				<fieldset data-role="fieldcontain"> 
+					<label for="favcolor">Favorite Color:</label>
+					<select id="favcolor" name="favcolor">
+						<option>Select One</option>
+						<option>Green</option>
+						<option>Red</option>
+						<option>Blue</option>
+						<option>Yellow</option>
+					</select>
+				</fieldset>
+	 
+				<fieldset data-role="fieldcontain"> 
+					<label for="hometown">Home Town:</label>
+					<input type="text" name="hometown" id="hometown">
+				</fieldset>
+	 
+				<input type="submit" value="Register">
+	 
+			</form-->
+			
+			
+			Test	
+			
+			<ul data-role="listview" id="first_list">
+			<li id="test_list"><a href="index.html">
+				<img src="../static/res/icons/food-icon1.png" />
+				<h3>Milk</h3>
+				<p>Nice Milk</p>
+			</a></li>
+			<li><a href="index.html">
+				<img src="../static/res/icons/food-icon1.png" />
+				<h3>Bred</h3>
+				<p>The fresh and best one you can get</p>
+			</a></li>
+			<li><a href="index.html">
+				<img src="../static/res/icons/food-icon1.png" />
+				<h3>Wolfgang Amadeus Phoenix</h3>
+				<p>Phoenix</p>
+			</a></li>
+			<li><a href="index.html">
+				<img src="../static/res/icons/food-icon1.png" />
+				<h3>Of The Blue Colour Of The Sky</h3>
+				<p>Ok Go</p>
+			</a></li>
+			<li><a href="index.html">
+				<img src="../static/res/icons/food-icon1.png" />
+				<h3>Elephant</h3>
+				<p>The White Stripes</p>
+			</a></li>
+			<li><a href="index.html">
+				<img src="../static/res/icons/food-icon1.png" />
+				<h3>Kid A</h3>
+				<p>Radiohead</p>
+			</a></li>
+			<li><a href="index.html">
+				<img src="../static/res/icons/food-icon1.png" />
+				<h3>XX</h3>
+				<p>XX</p>
+			</a></li>
+			<li><a href="index.html">
+				<img src="../static/res/icons/food-icon1.png" />
+				<h3>Congratulations</h3>
+				<p>MGMT</p>
+			</a></li>
+		</ul>
+		</div>
+	</div>
 </body>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        //alert('test');
-        // Check for first application start
-    });
-
-    $("#test_list").bind('tap', function (event) {
-        //goToPage('mainpage');
-        $("#test_list").hide();
-        //$("#test_list").append('<li id="test_list"><a href="index.html"><img src="{{ STATIC_URL }}res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
-        $('#second_list').append('<li id="test_list"><a href="index.html"><img src="{{ STATIC_URL }}res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
-        //$( "#test_list" ).hide();
-        $('#second_list').listview('refresh');
-        //$("#test_list2").trigger('create');
-        //$("#test_list2").listview("refresh");
-        //alert("You clicked");
-        event.preventDefault();
-    });
-</script>
-
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//alert('test');
+			// Check for first application start
+		});
+		
+		$("#test_list").bind('tap', function(event) {
+			//goToPage('mainpage');
+			$( "#test_list" ).hide();
+			//$("#test_list").append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
+			$('#second_list').append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
+			//$( "#test_list" ).hide();
+			$('#second_list').listview('refresh');
+			//$("#test_list2").trigger('create');
+			//$("#test_list2").listview("refresh");
+			//alert("You clicked");
+			event.preventDefault();
+		});
+		
+		$("#add_button").bind('tap', function(event) {
+			//goToPage('mainpage');
+			//alert('jap');
+			//$('#registration').append('GO');
+			$('#registration').load("html/add.html", function() { 
+				$(this).trigger('create');
+			});
+			event.preventDefault();
+		});
+	</script>
+	
 </html>

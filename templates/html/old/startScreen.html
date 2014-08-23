@@ -1,0 +1,345 @@
+<div data-role="content" class="mainpadding">  
+<center><img src="res/icons/gdacsmobile_logo.png"  width="120px" height="70px"/></center>
+	<p>
+	<div style="text-align:justify; color:#FFFFFF">
+		Welcome to the GDACSmobile application.<br><br>
+		In order to use the GDACSmobile functionality, you will have to initialize the application. 
+		An internet connection is required for the initialization process. Click on "Initialize Application" in order to start.<br>
+		In case that you don't have an internet connection, you can have a glance into the application by clicking on "Restricted Insight".
+	</div> 
+	<button name="initApp" id="initApp">Initialize Application</button>
+	<button name="notInitApp" id="notInitApp">Restricted Insight</button>
+</div>  
+	<!-- This is the Android rebug section
+	 button id = "myreport_data">MyReport Data</button>
+	<button id = "report_data">Report Data</button>		
+	<button id = "category_data">Category Data</button>
+	<button id = "user_data">User Data</button>
+	<button id = "template_data">Template Data</button>	
+	<button id = "alert_data">Alert Data</button>
+	<button id = "mission_data">Mission Data</button>
+	<button id = "config_data">Config Data</button>	
+		
+	<button id = "alert_data2">Alert Data2</button>
+	<button id = "mission_data2">Mission Data2</button>
+	<button id = "category_data2">Category Data2</button>
+	<button id = "template_data2">Template Data2</button>
+	
+	<button id = "all_data">OpenAllLawnChairsDroid</button>
+	<button id = "all_data2">UpdateAllLawnchairs</button>
+	<button id = "all_data3">OpenAndUpdateAllLawnchairs</button>  -->
+ 
+<!-- Page specific js -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		// Button for initializing the app and entering the 
+		$("#initApp").bind('tap', function(event) {
+			console.log('init app');
+			initializeAppData();
+			openAllLawnchairs(function() {
+				if((navigator.userAgent.match(/Android/i)) == "Android"){
+					console.log('Android initialization, storages are opened');
+					sessionStorage.setItem('lawnchairsAreOpen', false);
+					openAllLawnchairs(function() {
+						console.log('Lawnchair reopened');
+						//updateCategoryData("1", function(){}, function(){});
+						updateApplicationData(false, function(){
+							$.unblockUI();
+							goToPage("login");	
+						}, function (){
+							$.unblockUI();
+							console.log('not updated');
+							navigator.notification.alert(
+			    				"No or bad server connection",  // message
+			    				function(){},             // callback
+			    				'Initializing Failed',            // title
+			    				'Ok'        // buttonName
+			    			);
+						});
+					});
+						
+				} else {
+					$.blockUI();
+					console.log('UI blocked');
+					updateApplicationData(false, function(){
+						$.unblockUI();
+						goToPage("login");	
+					}, function (){
+						$.unblockUI();
+						console.log('not updated');
+						navigator.notification.alert(
+		    				"No or bad server connection",  // message
+		    				function(){},             // callback
+		    				'Initializing Failed',            // title
+		    				'Ok'        // buttonName
+		    			);
+					});
+				}	
+			});	
+		});	
+
+		// Button for showing the app without the initialization
+		$("#notInitApp").bind('tap', function(event) {
+			initializeAppData();
+			localStorage.setItem('selectedMissionName', "No Disaster");
+			localStorage.setItem('selectedDisasterName', "No Mission");
+			
+			//alert("start");
+			goToPage("mainpage");		
+		});
+		
+		// Do not display footer at the start screen
+		$("#GDACSmobile_footer").hide();
+		$("#GDACSmobile_content").fadeIn(100); // displaying the page
+	}); 	
+
+	// TEST TODO remove
+	$("#alert_data").bind('tap', function(event) {
+		console.log('alert');
+		alertData = Lawnchair({name:'alertData',adapter:'dom'},function(e){	
+			console.log('alert storage open');
+		});	
+		event.preventDefault();
+	});
+
+	$("#myreport_data").bind('tap', function(event) {
+		console.log('myreport');
+		localReportData = Lawnchair({name:'localReportData',adapter:'webkit-sqlite'},function(e){	
+			console.log('localReportData storage open');
+		});	
+		event.preventDefault();
+	});
+
+	$("#user_data").bind('tap', function(event) {
+		console.log('user_data');
+		userInputData = Lawnchair({name:'userInputData',adapter:'webkit-sqlite'},function(e){	
+			console.log('user_data storage open');
+		});	
+		event.preventDefault();
+	});
+
+	$("#config_data").bind('tap', function(event) {
+		console.log('configData');
+		configData = Lawnchair({name:'configData',adapter:'dom'},function(e){	
+			console.log('configData storage open');
+		});	
+		event.preventDefault();
+	});
+
+	$("#mission_data").bind('tap', function(event) {
+		console.log('mission');	
+		missionData = Lawnchair({name:'missionData',adapter:'dom'},function(e){	
+			console.log('mission storage open');
+		});
+		event.preventDefault();
+	});
+
+	$("#category_data").bind('tap', function(event) {
+		console.log('category');
+		categoryData = Lawnchair({name:'categoryData',adapter:'webkit-sqlite'},function(e){	
+			console.log('category storage open');
+		});
+		event.preventDefault();
+	});
+
+	$("#template_data").bind('tap', function(event) {
+		console.log('template');
+		reportTemplateData = Lawnchair({name:'reportTemplateData',adapter:'dom'},function(e){	
+			console.log('template storage open');
+		});
+		event.preventDefault();
+	});
+
+	$("#report_data").bind('tap', function(event) {
+		console.log('template');
+		reportData = Lawnchair({name:'reportData',adapter:'webkit-sqlite'},function(e){	
+			console.log('reportData storage open');
+		});
+		event.preventDefault();
+	});
+
+	$("#alert_data2").bind('tap', function(event) {
+		console.log('alert');
+		alertData = Lawnchair({name:'alertData',adapter:'webkit-sqlite'},function(e){	
+			console.log('alert storage open');
+			
+			$.ajax({
+				url: currentAlertURL + "1", /*we used alertURL here*/
+				dataType: 'jsonp',
+				jsonp: 'callback',
+				timeout: serverTimeOut,
+				success: function(data, status) {
+					//alert(data.length);
+					if(data.length != "0"){
+						// remove old data
+						alertData.nuke(function(){
+							console.log("Alert Storage deleted");
+							storeDataArrayInLawnChair(alertData, data, 0, data.length, function() {
+								console.log("Saving recursion was successfull");
+								localStorage.setItem('tsAlerts', 2);
+								//callbackSuccess();
+							});
+						});
+				    } else {
+					   console.log("No alert updates available");
+					   localStorage.setItem('tsAlerts', 2);
+					   //callbackSuccess();
+				    }
+				},
+				error: function(){
+					alert("Error occured in updateAlerts");
+					//callbackError();
+				}
+			});
+		});	
+		event.preventDefault();
+	});
+
+	$("#mission_data2").bind('tap', function(event) {
+		console.log('mission');	
+		missionData = Lawnchair({name:'missionData',adapter:'webkit-sqlite'},function(e){	
+			console.log('mission storage open');
+			
+			$.ajax({
+				url: missionURL + 1,
+				dataType: 'jsonp',
+				jsonp: 'callback',
+				timeout: serverTimeOut,
+				success: function(data, status) {
+					//alert(data.length);
+					if(data.length != "0"){
+						missionData.nuke(function(){
+							storeDataArrayInLawnChair(missionData, data, 0, data.length, function() {
+								console.log("Saving recursion was successfull");
+								localStorage.setItem('tsMissions', 2);
+								//callbackSuccess();
+							});
+						});
+				    } else {
+					   console.log("No mission updates available");
+					   localStorage.setItem('tsMissions', 2);
+					   //callbackSuccess();	
+				    }
+				},
+				error: function(){
+					alert("Error occured in updateMissions");
+					//callbackError();
+				}
+			});
+		});
+		event.preventDefault();
+	});
+
+	$("#category_data2").bind('tap', function(event) {
+		console.log('category');
+		categoryData = Lawnchair({name:'categoryData',adapter:'webkit-sqlite'},function(e){	
+			console.log('category storage open');
+			
+			$.ajax({
+				url: categoryURL + "1",
+				dataType: 'jsonp',
+				jsonp: 'callback',
+				timeout: serverTimeOut,
+				success: function(data, status) {
+					//if category data exists
+					if(data.length != "0"){
+						storeDataArrayInLawnChair(categoryData, data, 0, data.length, function() {
+							console.log("Saving recursion was successfull");
+							localStorage.setItem('tsCategory', 1);
+							//callbackSuccess();
+						});
+					} else {
+					   console.log("No category updates available");
+						//update time stamp after successful update
+					   localStorage.setItem('tsCategory', 2);
+					   //callbackSuccess();
+					}
+				},
+				error: function(){
+					alert("Error occured in updateCategory");
+					//callbackError();
+				}
+			});	
+		});
+		event.preventDefault();
+	});
+
+	$("#template_data2").bind('tap', function(event) {
+		console.log('template');
+		reportTemplateData = Lawnchair({name:'reportTemplateData',adapter:'webkit-sqlite'},function(e){	
+			console.log('template storage open');
+			
+			$.ajax({
+				url: templateURL + "1",
+				dataType: 'jsonp',
+				jsonp: 'callback',
+				timeout: serverTimeOut,
+				success: function(data, status) {
+					//alert(data.length);
+					if(data.length != "0"){
+						storeDataArrayInLawnChairForRT(reportTemplateData, data, 0, data.length, function() {
+							console.log("Saving recursion was successfull");
+							localStorage.setItem('tsTemplates', 2);
+							//callbackSuccess();
+						});
+				   } else {
+					   console.log("No report template updates available");
+					   localStorage.setItem('tsTemplates', 2);
+					   //callbackSuccess();
+				   }
+				},
+				error: function(){
+					alert("Error occured in updateReportTemplates");
+					//callbackError();
+				}
+			});
+		});
+		event.preventDefault();
+	});
+	
+	$("#all_data").bind('tap', function(event) {
+		console.log('open all');
+		reportTemplateData = Lawnchair({name:'reportTemplateData',adapter:'webkit-sqlite'},function(e){	
+			console.log('template storage open');
+			categoryData = Lawnchair({name:'categoryData',adapter:'webkit-sqlite'},function(e){	
+				console.log('category storage open');
+				missionData = Lawnchair({name:'missionData',adapter:'webkit-sqlite'},function(e){	
+					console.log('mission storage open');
+					alertData = Lawnchair({name:'alertData',adapter:'webkit-sqlite'},function(e){	
+						console.log('alert storage open');
+					});	
+				});
+			});		
+		});
+	});
+
+	$("#all_data2").bind('tap', function(event) {
+		console.log('open all');
+		reportTemplateData = Lawnchair({name:'reportTemplateData',adapter:'webkit-sqlite'},function(e){	
+			console.log('template storage open');
+			categoryData = Lawnchair({name:'categoryData',adapter:'webkit-sqlite'},function(e){	
+				console.log('category storage open');
+				missionData = Lawnchair({name:'missionData',adapter:'webkit-sqlite'},function(e){	
+					console.log('mission storage open');
+					alertData = Lawnchair({name:'alertData',adapter:'webkit-sqlite'},function(e){	
+						console.log('alert storage open');
+					});	
+				});
+			});		
+		});
+	});
+
+	$("#all_data3").bind('tap', function(event) {
+		console.log('Update app');
+		openAllLawnchairs(function(){
+			updateApplicationData(true, function(){
+				console.log('update successful');
+			}, function(){
+				console.log('Error in update');
+			});
+		});
+	});
+	// TEST END
+	
+</script>
+

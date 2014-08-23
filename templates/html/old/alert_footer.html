@@ -1,0 +1,23 @@
+<div data-role="footer" class="nav-glyphish-example" data-theme="b">
+	<div data-role="navbar" class="nav-gdacsmobile" data-grid="a">
+	<ul>
+		<li><a href="#" id="alertList" data-icon="custom">List</a></li>
+		<li><a href="#" id="alertMap" data-icon="custom">Map</a></li>
+	</ul>
+	</div>
+</div>
+	
+<!-- Page specific js -->	
+<script>
+	// Button for selecting alert on map
+	$("#alertMap").bind('tap', function(event) {
+		startNewFunctionality(4);
+		event.preventDefault();
+	});
+
+	// Button for selecting alert from list
+	$("#alertList").bind('tap', function(event) {
+		startNewFunctionality(6);
+		event.preventDefault();
+	});
+</script>

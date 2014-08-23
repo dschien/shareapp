@@ -1,0 +1,39 @@
+<div data-role="footer" class="nav-glyphish-example" >
+	<div data-role="navbar" class="nav-gdacsmobile" data-grid="d">
+	<ul>
+		<li><a href="#" id="map" data-icon="custom"><font size="1">Map</font></a></li>
+		<li><a href="#" id="na" data-icon="custom"><font size="1">Assess</font></a></li>
+		<li><a href="#" id="overview" data-icon="custom"><font size="1">Overview</font></a></li>
+		<li><a href="#" id="myreport" data-icon="custom"><font size="1">My Reports</font></a></li>
+		<li><a href="#" id="gear" data-icon="custom"><font size="1">More</font></a></li>
+	</ul>
+	</div>
+</div>
+
+<!-- Page specific js -->
+<script>
+	$("#map").bind('tap', function(event) {
+		startNewFunctionality(5);	// Local View
+		event.preventDefault();
+	});
+	
+	$("#na").bind('tap', function(event) {
+		startNewFunctionality(1);	// Needs Assessment
+		event.preventDefault();
+	});
+	
+	$("#overview").bind('tap', function(event) {
+		startNewFunctionality(2);	// Situational Overvoew
+		event.preventDefault();
+	});
+	
+	$("#gear").bind('tap', function(event) {
+		startNewFunctionality(3);	// Administration
+		event.preventDefault();
+	});
+	
+	$("#myreport").bind('tap', function(event) {
+		startNewFunctionality(7);	// My Report
+		event.preventDefault();
+	});
+</script>

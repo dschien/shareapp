@@ -1,0 +1,267 @@
+<div data-role="content" class="mainpadding">
+	<div data-role="fieldcontain">
+		<fieldset data-role="controlgroup" data-type="horizontal">
+			<legend><b><span style="color:#FFFFFF">Ask for login on startup</span></b></legend>
+				<span> <!-- style="float:right" -->
+					<input type="radio" name="radio-choice-login" id="login_yes" value="on" checked="checked" />
+					<label for="login_yes">Yes</label>
+					<input type="radio" name="radio-choice-login" id="login_no" value="off" />
+					<label for="login_no">No</label>
+				</span>
+		</fieldset>
+		<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend><b><span style="color:#FFFFFF">Update on application start</span></b></legend>
+				<span> <!-- style="float:right" -->
+					<input type="radio" name="radio-choice-update" id="update_yes" value="on" checked="checked" />
+					<label for="update_yes">Yes</label>
+					<input type="radio" name="radio-choice-update" id="update_no" value="off" />
+					<label for="update_no">No</label>
+				</span>	
+		</fieldset>
+		<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend><b><span style="color:#FFFFFF">Try to submit reports automatically</span></b></legend>
+				<span> <!-- style="float:right" -->
+					<input type="radio" name="radio-choice-submission" id="submission_yes" value="on" checked="checked" />
+					<label for="submission_yes">Yes</label>
+					<input type="radio" name="radio-choice-submission" id="submission_no" value="off" />
+					<label for="submission_no">No</label>
+				</span>	
+		</fieldset>
+		<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+			<legend><b><span style="color:#FFFFFF">Map Tiles</span></b></legend>
+				<input type="radio" name="radio-choice-tiles" id="tiles_jrc" value="jrc" />
+				<label for="tiles_jrc">JRC Street Map</label>
+				<input type="radio" name="radio-choice-tiles" id="tiles_osm" value="osm"  />
+				<label for="tiles_osm">OpenStreetMap</label>
+		</fieldset>
+		<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+			<legend><b><span style="color:#FFFFFF">GDACSmobile Layout</span></b></legend>
+				<input type="radio" name="radio-choice-style" id="style_gdacs_blue" value="GDACS-blue" checked="checked" />
+				<label for="style_gdacs_blue">GDACS blue</label>
+				<input type="radio" name="radio-choice-style" id="style_black_white" value="black-white"  />
+				<label for="style_black_white">Black & White</label>
+		</fieldset>
+	</div>		
+	<p id = "updateData" data-role="button" >Update</p>
+	<div align="center" id="upToDateDisplay"></div>
+	<div align="center" id="lastUpdateTime"></div>
+	<p id = "checkUpdateAvailability" data-role="button" >Check For Updates</p>
+	<p id = "changeMission" data-role="button" >Change Mission\Alert</p>
+	<p id = "deletelocaldata" data-role="button" >Reset Application</p>
+	<p id = "aboutPage" data-role="button" >About</p>
+	<br><br>
+</div>
+
+
+<!-- Page specific js -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		// BEGIN radio button block
+		var loginRadio = $('input[name=radio-choice-login]');
+		var loginCheck = localStorage.getItem('loginCheck');
+		if(loginCheck == "true") {
+			console.log('Login check is on');
+			loginRadio[0].checked = true;
+			loginRadio[1].checked = false;
+		} else {
+			console.log('Login check is off');
+			loginRadio[0].checked = false;
+			loginRadio[1].checked = true;
+		}
+		var loginRadio = $('input[name=radio-choice-login]');
+		// END radio button block
+		
+		// BEGIN radio button block
+		var updateRadio = $('input[name=radio-choice-update]');
+		var updateCheck = localStorage.getItem('updateOnStart');
+		if(updateCheck == "true") {
+			console.log('Update check is on');
+			updateRadio[0].checked = true;
+			updateRadio[1].checked = false;
+		} else {
+			console.log('Update check is off');
+			updateRadio[0].checked = false;
+			updateRadio[1].checked = true;
+		}
+		var updateRadio = $('input[name=radio-choice-update]');
+		// END radio button block
+		
+		// BEGIN radio button block
+		var submissionRadio = $('input[name=radio-choice-submission]');
+		var submissionCheck = localStorage.getItem('automaticSubmission');
+		if(submissionCheck == "true") {
+			console.log('Submission check is on');
+			submissionRadio[0].checked = true;
+			submissionRadio[1].checked = false;
+		} else {
+			console.log('Submission check is off');
+			submissionRadio[0].checked = false;
+			submissionRadio[1].checked = true;
+		}
+		var submissionRadio = $('input[name=radio-choice-submission]');
+		// END radio button block
+		
+		// BEGIN radio button block
+		var tilesRadio = $('input[name=radio-choice-tiles]');
+		var tilesCheck = localStorage.getItem('basicMapTiles');
+		if(tilesCheck == 'osm') {
+			tilesRadio[1].checked = true;
+			tilesRadio[0].checked = false;
+		} else {
+			tilesRadio[1].checked = false;
+			tilesRadio[0].checked = true;
+		}
+		// END radio button block
+		
+		// BEGIN radio button block
+		var styleRadio = $('input[name=radio-choice-style]');
+		var styleCheck = localStorage.getItem('appStyle');
+		if(styleCheck == 'GDACS-blue') {
+			styleRadio[0].checked = true;
+			styleRadio[1].checked = false;
+		} else {
+			styleRadio[0].checked = false;
+			styleRadio[1].checked = true;
+		}
+		// END radio button block
+				
+		// BEGIN Logic for radio button for turning login on or off
+		$(":input[@name='radio-choice-login']").live('change',function(event) {  
+			//alert('clicked a ' + $('input[name=login_yes]:radio:checked').val());
+			var loginCheck = $('input[name=radio-choice-login]');
+			var yesValue = loginCheck.filter(':checked').val();
+			if(yesValue == "on") {
+				localStorage.setItem('loginCheck', true);
+				console.log('Login check is set on');
+			} else {
+				localStorage.setItem('loginCheck', false);
+				console.log('Login check is set off');
+			}
+		});  
+		// END Logic for radio button for turning login on or off
+		
+		// BEGIN Logic for radio button for turning update on start on or off
+		$(":input[@name='radio-choice-update']").live('change',function(event) {  
+			var updateCheck = $('input[name=radio-choice-update]');
+			var yesValue = updateCheck.filter(':checked').val();
+			if(yesValue == "on") {
+				localStorage.setItem('automaticSubmission', true);
+				console.log('Automatic submission is set on');
+			} else {
+				localStorage.setItem('automaticSubmission', false);
+				console.log('Automatic submission is set off');
+			}
+		});  
+		// END Logic for radio button for turning update on start on or off
+		
+		// BEGIN Logic for radio button for turning automatic submission on or off
+		$(":input[@name='radio-choice-submission']").live('change',function(event) {  
+			var submissionCheck = $('input[name=radio-choice-submission]');
+			var yesValue = submissionCheck.filter(':checked').val();
+			if(yesValue == "on") {
+				localStorage.setItem('updateOnStart', true);
+				console.log('Update check is set on');
+			} else {
+				localStorage.setItem('updateOnStart', false);
+				console.log('Update check is set off');
+			}
+		});  
+		// END Logic for radio button for turning automatic submission on or off
+		
+		// BEGIN Logic for switching between different map tiles
+		$(":input[@name='radio-choice-tiles']").live('change',function(event) {  
+			var tileCheck = $('input[name=radio-choice-tiles]');
+			var selectedValue = tileCheck.filter(':checked').val();
+			localStorage.setItem('basicMapTiles', selectedValue);
+			
+			if (localMap && localMap instanceof OpenLayers.Map)
+				if(selectedValue == "jrc") {
+					localMap.setBaseLayer(localMap.getLayersByName("JRC Street Map")[0]);
+					mapClusterStrategy.recluster();
+				}
+				else {
+					localMap.setBaseLayer(localMap.getLayersByName("OpenStreetMap")[0]);
+					mapClusterStrategy.recluster();
+				}
+			localStorage.setItem('initializeGlobalMap', true);
+		});
+		// END Logic for switching between different map tiles
+		
+		// Style switcher
+		$(":input[@name='radio-choice-style']").live('change',function(event) {  
+			var styleCheck = $('input[name=radio-choice-style]');
+			var selectedValue = styleCheck.filter(':checked').val();
+			switch_style(selectedValue);
+		});
+		
+		// Login ask button for yes
+		$("#login_yes").bind('tap', function(event) {
+			alert('ask for login');
+			event.preventDefault();
+		});	
+
+		// Login ask button for no
+		$("#login_no").bind('tap', function(event) {
+			alert('dont ask for login');
+			event.preventDefault();
+		});	
+
+		// Reset application including reset local data
+		$("#deletelocaldata").bind('tap', function(event) {
+	    	sessionStorage.setItem('appReset', true);
+			nukeLocalData(function() {
+	    		updateApplicationData(true, function(){
+					console.log("Updating the application. completed..");
+					sessionStorage.setItem('appReset', false);
+					console.log('Going to login');
+					goToPage("login");
+				}, function(){
+					sessionStorage.setItem('appReset', false);
+				});
+		    });
+		    event.preventDefault();
+		});	
+
+		// Change mission button
+		$("#changeMission").bind('tap', function(event) {
+			startNewFunctionality(8);
+			event.preventDefault();
+		});
+
+		// Update button
+		$("#updateData").bind('tap', function(event) {
+			updateApplicationData(true, function(){
+				console.log('Application was updated'); 
+				displayIfUpToDate();
+				$.unblockUI();
+			}, function(){
+				console.log('Error in update');
+			});   
+			event.preventDefault();
+		});
+
+		// Button for checking update availability
+		$("#checkUpdateAvailability").bind('tap', function(event) {
+			if(checkForFirstStart() == true) {
+				displayWarning("Please select update to initialize the app!");
+			} else {
+				checkUpdateAvailability();
+			}
+			event.preventDefault();
+		});
+
+		// Button for calling about page
+		$("#aboutPage").bind('tap', function(event) {
+			startNewFunctionality(10);
+			event.preventDefault();
+		});
+
+		// Function which is called when page is loaded to show whether app is up to date
+		displayIfUpToDate();
+
+		// Safe unblock
+		$.unblockUI();
+		// Fade in animation
+		$("#GDACSmobile_content").fadeIn(100); // displaying the page
+	});
+</script>

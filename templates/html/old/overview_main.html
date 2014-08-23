@@ -1,0 +1,46 @@
+<div data-role="content" class="mainpadding">
+	<div id="visualization_area"></div>
+	
+	<div id="download_area">
+		<div id="download_options">
+				<p id = "downAllReportsForCurrentDisaster" data-role="button">Download all reports for current disaster</p>
+				<p id = "showMissionList" data-role="button" >Download group specific reports</p>
+				<p id = "showCatSelection" data-role="button">Download reports for specific categories</p>
+		</div>
+		<br><br><br>
+	</div>
+	<div id="mission_selection_list"></div>
+	<br>
+	<div id="password_area"></div>
+</div>
+
+<!-- Page specific js -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		// Button for loading reports for a current disaster
+		$("#downAllReportsForCurrentDisaster").bind('tap', function(event) {
+			retrieveReportDownloadUserInput("1",function(userDownloadInput){
+				createFilterXML(userDownloadInput, function (filterXML){
+					sendReportDataRequests(filterXML, function(){});
+				});					
+			});
+			event.preventDefault();
+		});
+
+		// Button for showing mission list
+		$("#showMissionList").bind('tap', function(event) {
+			showMissionSelectionList(function(){
+				$("#mission_selection_list").fadeIn(100);
+			});
+			event.preventDefault();
+		});
+		
+		// Button for showing category selection
+		$("#showCatSelection").bind('tap', function(event) {
+			goToPage("overviewCatSelection",0, 'over_main', 'argeshere', false);
+			event.preventDefault();
+		});
+		
+		$("#GDACSmobile_content").fadeIn(100); // displaying the page
+	});
+</script>

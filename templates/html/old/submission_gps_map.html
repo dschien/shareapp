@@ -1,0 +1,38 @@
+<div id="mapPanel" class="mapPanel"></div>
+
+<div id="navigation" class="mapControlZoomJQuery" data-role="controlgroup" data-type="vertical">
+  <a href="#" data-role="button" data-icon="plus" id="mapControlZoomIn" data-iconpos="notext"></a>
+  <a href="#" data-role="button" data-icon="minus" id="mapControlZoomOut" data-iconpos="notext"></a>
+</div>
+
+<div id="mapGPS" class="mapControlGPS">
+	<a href="#" id="mapGPS_Select" data-role="button" data-inline="true" data-mini="true">Select<br>Position</a>
+</div>
+
+<!-- Page specific js -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Initializing the map
+		setupLocalMap(false, null, null, null, null, function() {
+		    $("#GDACSmobile_content").fadeIn(100);
+		});
+		
+		// Button for zooming in
+		$("#mapControlZoomIn").bind('tap', function(event) {
+			localMap.zoomIn();
+			event.preventDefault();
+		});
+		
+		// Button for zooming out
+		$("#mapControlZoomOut").bind('tap', function(event) {
+			localMap.zoomOut();
+			event.preventDefault();
+		});
+		
+		// Button for position selection
+		$("#mapGPS_Select").bind('tap', function(event) {
+			selectPosition();
+			event.preventDefault();
+		});
+	});
+</script>

@@ -1,0 +1,85 @@
+<div data-role="dialog" data-theme="d">
+	<div data-role="header" data-theme="a">
+		<h1>Layer Selection</h1>
+	</div>
+	
+	<div data-role="content" data-theme="c">
+		<div id="localFilterMenuContent" data-role="collapsible-set" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-theme="a" data-content-theme="c">
+			<div data-role="collapsible">
+				<h3>Categories</h3>
+				<div id="mapFilterCategories" class="ui-grid-a"></div>
+			</div>
+			<div data-role="collapsible">
+				<h3>Reporters</h3>
+				<div id="mapFilterReporters" class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" id="buttonTrustFilter" data-role="button" data-mini="true" onclick="javascript:flipTrustFilter(0);">Registered</a>
+					</div>
+					<div class="ui-block-b">
+						<a href="#" id="buttonUntrustFilter" data-role="button" data-mini="true" onclick="javascript:flipTrustFilter(1);">Anonymous</a>
+					</div>
+				</div>
+			</div>
+			<div data-role="collapsible">
+				<h3>Sources</h3>
+				<div id="mapFilterSources" class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" id="buttonSourceGDACSMobileFilter" data-role="button" data-mini="true" onclick="javascript:flipSourceFilter(0);">GDACSmobile</a>
+					</div>
+					<div class="ui-block-b">
+						<a href="#" id="buttonSourceTwitterFilter" data-role="button" data-mini="true" onclick="javascript:flipSourceFilter(1);">Twitter</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ui-grid-a">
+			<div class="ui-grid-solo">
+				<span style="font-size: 0.83em; font-weight: bold;">Note: Selected buttons are light blue</span>
+			</div>
+			<div class="ui-block-a">
+				<a href="#" id="cancel" data-role="button" data-rel="back" data-mini="true">Cancel</a>
+			</div>
+			<div class="ui-block-b">
+				<a href="#" id="applyFilter" data-role="button" data-rel="back" data-mini="true" data-theme="a">Apply</a>
+			</div>
+		</div>
+	</div>
+	
+<!-- Page specific js -->	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// Setup Filter Buttons for Categories
+			var sourceCatFilter = [''];
+			buildMapFilterCategory(0, sourceCatFilter, function(){
+				$('#mapFilterCategories').html(sourceCatFilter.join('')).trigger('create');
+			});
+			
+			// Setup Filter Buttons for Trust
+			mapTrustFilter[0] = parseInt(localStorage.getItem('mapTrustedFilter'), 10);
+			mapTrustFilter[1] = parseInt(localStorage.getItem('mapUntrustedFilter'), 10);
+			renderTrustButtons();
+			
+			// Setup Filter Buttons for Sources
+			mapSourceFilter[0] = parseInt(localStorage.getItem('mapSourceGDACSmobileFilter'), 10);
+			mapSourceFilter[1] = parseInt(localStorage.getItem('mapSourceTwitterFilter'), 10);
+			renderSourceButtons();
+			
+			// Save and Apply Filter to Map when Apply Button is clicked
+			$("#applyFilter").bind('tap', function(event) {
+				applyMapFilter(function(){
+					mapClusterStrategy.recluster();
+				});
+				saveMapFilterConfig();
+			});
+			
+			// Redraw Map after Filter Menu is closed
+			$("div[data-role='dialog']").on("pagehide", function() {
+				$("#mapLocalMenuButton").animate({opacity: 1.0}, 0);
+				//$("#mapLocalMenuButton").show();
+				mapLayerReports.redraw();
+			});
+		});
+		
+	</script>
+	
+</div>

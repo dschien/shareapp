@@ -1,0 +1,16 @@
+<div data-role="content" class="mainpadding">
+	<div id="ReportListMenu"></div>
+	<div id="ReportList"></div>			
+</div>
+	
+<!-- Page specific js -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		// Load dynamic list of report for a category 
+		loadReportDataForCategory(function(){
+			$("#GDACSmobile_content").fadeIn(100);
+		});
+	});
+</script>
+		
+	

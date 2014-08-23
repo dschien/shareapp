@@ -14,7 +14,7 @@
 		<div data-role="header" data-position="inline">
 			<h1>Here is food in your hood</h1>
 			<a href="index.html" data-rel="back">Home</a>
-			<a href="#" data-icon="plus" data-theme="b">Add</a>
+			<a href="#" id="add_button" data-icon="plus" data-theme="b">Add</a>
 		</div>
 		<div data-role="content" data-theme="a">
 			
@@ -150,6 +150,16 @@
 			//$("#test_list2").trigger('create');
 			//$("#test_list2").listview("refresh");
 			//alert("You clicked");
+			event.preventDefault();
+		});
+		
+		$("#add_button").bind('tap', function(event) {
+			//goToPage('mainpage');
+			//alert('jap');
+			//$('#registration').append('GO');
+			$('#registration').load("html/add.html", function() { 
+				$(this).trigger('create');
+			});
 			event.preventDefault();
 		});
 	</script>

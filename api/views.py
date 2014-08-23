@@ -24,3 +24,16 @@ def requestItem(request, ):
     t.save()
 
     return HttpResponse(json.dumps(1))
+
+@api_view(['POST'])
+# @authentication_classes((OAuth2Authentication,))
+@permission_classes((AllowAny,))
+def addItem(request, ):
+    name = request.DATA['name']
+    description = request.DATA['description']
+    user = request.user
+
+    item = Item(name=name, description=description, provider=user)
+    item.save()
+
+    return HttpResponse(json.dumps(1))

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load staticfiles %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base.css"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block page_title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}lib/css/normalize.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    {#    <link rel="stylesheet" href="{{ STATIC_URL }}lib/css/bootstrap.min.css">#}
+{#    <link rel="stylesheet" href="{{ STATIC_URL }}lib/css/bootstrap-theme.min.css">#}
+    <script src="{{ STATIC_URL }}lib/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+    {% block css %}{% endblock %}
+    {% block head %}{% endblock %}
+
+</head>
+
+<body class="{% block body_class %}{% endblock %} ">
+<!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+{% block header %}
+
+    {% block banner %}
+
+
+        {% if user.is_authenticated %}
+            <div class="container">
+
+
+                <div class="user-menu btn-group">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                        {% if user.first_name %}
+                            {{ user.first_name | capfirst }}
+                        {% else %}
+                            {{ user.username | capfirst }}
+                        {% endif %}<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+
+                        <li>
+                            <a href="{% url 'auth_password_change' %}">{% trans "Change password" %}</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a id='logout_button' href="{% url 'auth_logout' %}">{% trans "Log out" %}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            {#                            <li class="dropdown pull-right">#}
+            {#                                <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown"><i#}
+            {#                                        class="icon-cog"></i>Your Data<b class="caret"></b></a>#}
+            {#                                <ul class="dropdown-menu">#}
+            {#                                    <li class="nav-header">#}
+            {#                                        <a href="{% url 'web:notes' %}">{% trans "Notes" %}</a>#}
+            {#                                    </li>#}
+            {#                                    <li class="nav-header">#}
+            {#                                        <a href="{% url 'web:report' %}">{% trans "Report" %}</a>#}
+            {#                                    </li>#}
+            {##}
+            {#                                </ul>#}
+            {#                            </li>#}
+        {% else %}
+
+            {#                        <li>#}
+            {#                            <a href="{% url 'auth_login' %}?next={% url 'web:home' %}"#}
+            {#                               class="pull-right">{% trans "Log in" %}</a>#}
+            {#                        </li>#}
+
+        {% endif %}
+
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-7">
+                    <h1 class="title">EatX</h1>
+                </div>
+                <div class="col-lg-5">
+                    <p class="subtitle">Food in your Hood</p>
+                </div>
+            </div>
+
+
+        </div>
+
+    {% endblock %}
+
+    {% block nav_bar %}
+
+
+    {% endblock nav_bar %}
+
+{% endblock header %}
+
+
+{% block body %}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+
+                {% if error_message %}
+                    <div id="demo_alert" class="alert alert-block alert-info">
+                        <a class="close" data-dismiss="alert" href="#" onclick="hide_element('demo_alert');">x</a>
+                        <h4 class="alert-heading">Info</h4>
+                        {{ error_message }}
+                        <br>
+                        <a class="btn small" href="#" onclick="hide_element('demo_alert');">Close</a>
+                    </div>
+                {% endif %}
+
+                {% block content %}
+
+                {% endblock content %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}lib/js/jquery.min.js"><\/script>')</script>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+{#    <script src="{% static 'js/main.js' %}"></script>#}
+
+    <script>
+        var _gaq = [
+            ['_setAccount', ''],
+            ['_trackPageview']
+        ];
+        (function (d, t) {
+            var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            g.src = '//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g, s)
+        }(document, 'script'));
+    </script>
+
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=632763296814125&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+{% endblock body %}
+
+
+{% block javascript_library %}
+
+
+
+{% endblock javascript_library %}
+
+{% block javascript %}
+{% endblock javascript %}
+</body>
+</html>

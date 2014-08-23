@@ -188,10 +188,10 @@ INSTALLED_APPS = (
     # for testing
     # 'sslserver',
 
-    # 'registration',
+    'registration',
 
 
-    # 'social.apps.django_app.default',
+    'social.apps.django_app.default',
 
     # test app
     # 'thirdauth'

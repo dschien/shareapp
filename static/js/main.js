@@ -51,6 +51,33 @@ $(document).ready(function () {
         }
     }})
 
+
+    $("#button").click(function () {
+        t = setTimeout("removeDisplayMessage()", 2000);
+    });
+
+    $("#submit_item").bind('tap', function (event) {
+        event.preventDefault();
+        //showNotification({
+        //	message: "This is a sample Success notification",
+        //	type: "success"
+        //});
+
+
+        $("#add_form").empty();
+        $('#add_form').append('<p><b>Item added!</b> <img src="../static/res/icons/agt_action_success.png" alt="Smiley face" height="42" width="42"></p>  ');
+        t = setTimeout("removeDisplayMessage()", 1000);
+    });
+
+
     init();
 
-})
+});
+
+function removeDisplayMessage() {
+    $("#add_form").hide();
+}
+
+
+
+

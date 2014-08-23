@@ -3,8 +3,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Food Waste</title>
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/FoodWaste.css" />
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="../static/css/FoodWaste.css" />
+	<link rel="stylesheet" href="../static/css/jquery.mobile.icons.min.css" />
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile.structure-1.4.3.min.css" />
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
@@ -90,42 +90,42 @@
 			
 			<ul data-role="listview" id="first_list">
 			<li id="test_list"><a href="index.html">
-				<img src="{{ STATIC_URL }}res/icons/food-icon1.png" />
+				<img src="../static/res/icons/food-icon1.png" />
 				<h3>Milk</h3>
 				<p>Nice Milk</p>
 			</a></li>
 			<li><a href="index.html">
-				<img src="{{ STATIC_URL }}res/icons/food-icon1.png" />
+				<img src="../static/res/icons/food-icon1.png" />
 				<h3>Bred</h3>
 				<p>The fresh and best one you can get</p>
 			</a></li>
 			<li><a href="index.html">
-				<img src="{{ STATIC_URL }}res/icons/food-icon1.png" />
+				<img src="../static/res/icons/food-icon1.png" />
 				<h3>Wolfgang Amadeus Phoenix</h3>
 				<p>Phoenix</p>
 			</a></li>
 			<li><a href="index.html">
-				<img src="{{ STATIC_URL }}res/icons/food-icon1.png" />
+				<img src="../static/res/icons/food-icon1.png" />
 				<h3>Of The Blue Colour Of The Sky</h3>
 				<p>Ok Go</p>
 			</a></li>
 			<li><a href="index.html">
-				<img src="{{ STATIC_URL }}res/icons/food-icon1.png" />
+				<img src="../static/res/icons/food-icon1.png" />
 				<h3>Elephant</h3>
 				<p>The White Stripes</p>
 			</a></li>
 			<li><a href="index.html">
-				<img src="{{ STATIC_URL }}res/icons/food-icon1.png" />
+				<img src="../static/res/icons/food-icon1.png" />
 				<h3>Kid A</h3>
 				<p>Radiohead</p>
 			</a></li>
 			<li><a href="index.html">
-				<img src="{{ STATIC_URL }}res/icons/food-icon1.png" />
+				<img src="../static/res/icons/food-icon1.png" />
 				<h3>XX</h3>
 				<p>XX</p>
 			</a></li>
 			<li><a href="index.html">
-				<img src="{{ STATIC_URL }}res/icons/food-icon1.png" />
+				<img src="../static/res/icons/food-icon1.png" />
 				<h3>Congratulations</h3>
 				<p>MGMT</p>
 			</a></li>
@@ -143,8 +143,8 @@
 		$("#test_list").bind('tap', function(event) {
 			//goToPage('mainpage');
 			$( "#test_list" ).hide();
-			//$("#test_list").append('<li id="test_list"><a href="index.html"><img src="{{ STATIC_URL }}res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
-			$('#second_list').append('<li id="test_list"><a href="index.html"><img src="{{ STATIC_URL }}res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
+			//$("#test_list").append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
+			$('#second_list').append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
 			//$( "#test_list" ).hide();
 			$('#second_list').listview('refresh');
 			//$("#test_list2").trigger('create');

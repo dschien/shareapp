@@ -1,7 +1,18 @@
+<div id='hoods_list'>
+	<h1>Hood requested your food</h1>
+	<ul data-role="listview" id = 'second_list2'>
+				<li id="test_list2"><a href="index.html">
+				<img src="../static/res/icons/food-icon1.png" />
+				<h3>Bread</h3>
+				<p>Nice Milk</p>
+			</a></li>
+	</ul>
+</div>
+
 <h1>Here is your food for your hood:</h1>  
 
-<ul data-role="listview" id="first_list">
-			<li id="test_list"><a href="index.html">
+<ul data-role="listview" id="my_list">
+			<li id="test_list2"><a href="index.html">
 				<img src="../static/res/icons/food-icon1.png" />
 				<h3>Milk</h3>
 				<p>Nice Milk</p>
@@ -16,37 +27,30 @@
 				<h3>Wolfgang Amadeus Phoenix</h3>
 				<p>Phoenix</p>
 			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Of The Blue Colour Of The Sky</h3>
-				<p>Ok Go</p>
-			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Elephant</h3>
-				<p>The White Stripes</p>
-			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Kid A</h3>
-				<p>Radiohead</p>
-			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>XX</h3>
-				<p>XX</p>
-			</a></li>
-			<li><a href="index.html">
-				<img src="../static/res/icons/food-icon1.png" />
-				<h3>Congratulations</h3>
-				<p>MGMT</p>
-			</a></li>
 		</ul>
 </form>  
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		//alert('test');
+		
+		
 	});
+	
+	$("#test_list2").bind('tap', function(event) {
+		//goToPage('mainpage');
+		//$( "#hoods_list" ).show();
+		$( "#test_list2" ).hide();
+		//$("#test_list").append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
+		$('#second_list').append('<li id="test_list"><a href="index.html"><img src="../static/res/icons/food-icon1.png" />	<h3>Milk NEW</h3><p>Nice Milk</p></a></li>');
+		//$( "#test_list" ).hide();
+		$('#second_list').listview('refresh');
+		//$("#test_list2").trigger('create');
+		//$("#test_list2").listview("refresh");
+		//alert("You clicked");
+		
+		event.preventDefault();
+	});
+	
 </script>
 
